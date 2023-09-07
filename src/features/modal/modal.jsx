@@ -1,3 +1,5 @@
+import Button from '../../components/button/button'
+
 const Modal = () => {
   return (
     <>
@@ -8,7 +10,6 @@ const Modal = () => {
         data-bs-target='#modal'>
         Launch modal
       </button>
-
       <div className='modal fade' id='modal' tabIndex='-1'>
         <div className='modal-dialog modal-dialog-centered'>
           <div className='modal-content'>
@@ -25,15 +26,7 @@ const Modal = () => {
             </div>
             <div className='modal-footer'>
               <p>Footer</p>
-              <button
-                type='button'
-                className='btn btn-secondary'
-                data-bs-dismiss='modal'>
-                Close
-              </button>
-              <button type='button' className='btn btn-primary'>
-                Save changes
-              </button>
+              <Button buttonText='Save Changes' />
             </div>
           </div>
         </div>

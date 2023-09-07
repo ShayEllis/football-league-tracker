@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom'
 import './App.scss'
 import Modal from './features/modal/modal'
 import Table from './features/table/table'
@@ -12,12 +13,8 @@ function App() {
     <>
       <Navbar />
       <div className='container-fluid'>
-        <h1>Bootstrap and Vite!</h1>
-        <Modal />
-        <Table />
-        <Button buttonText='Click Here!' />
-        <Alert />
-        <Card />
+        <h1>Fantasy Football Tracker</h1>
+        <Outlet />
       </div>
     </>
   )

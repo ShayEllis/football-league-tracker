@@ -1,10 +1,13 @@
+import { Link, NavLink } from 'react-router-dom'
+import footballIcon from '../../assets/football-icon.svg'
+
 const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-md'>
       <div className='container-fluid'>
-        <a href='#' className='navbar-brand'>
-          Brand (img?)
-        </a>
+        <Link to='dashboard' className='navbar-brand'>
+          <img src={footballIcon}/>
+        </Link>
         <button
           className='navbar-toggler'
           data-bs-toggle='collapse'
@@ -16,19 +19,19 @@ const Navbar = () => {
         <div className='collapse navbar-collapse justify-content-end' id='nav'>
           <ul className='navbar-nav'>
             <li className='nav-item'>
-              <a href='#' className='nav-link active' aria-current='page'>
-                Home
-              </a>
+              <NavLink to='dashboard' className='nav-link active' aria-current='page'>
+                Dashboard
+              </NavLink>
             </li>
             <li className='nav-item'>
-              <a href='#' className='nav-link'>
-                One
-              </a>
+              <NavLink href='#' className='nav-link'>
+                Summary
+              </NavLink>
             </li>
             <li className='nav-item'>
-              <a href='#' className='nav-link'>
-                Two
-              </a>
+              <NavLink href='#' className='nav-link'>
+                Detail
+              </NavLink>
             </li>
           </ul>
         </div>
