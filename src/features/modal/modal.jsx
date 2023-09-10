@@ -22,11 +22,11 @@ const Modal = () => {
                 aria-label='Close'></button>
             </div>
             <div className='modal-body'>
-              <form>
+              <form className='w-75 m-auto'>
                 <div className='input-group'>
                   <label
                     htmlFor='platform'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='platform'>
                     Platform
                   </label>
@@ -37,8 +37,20 @@ const Modal = () => {
                 </div>
                 <div className='input-group'>
                   <label
+                    htmlFor='draft-date'
+                    className='input-group-text ps-2 col-4'
+                    aria-label='draft date'>
+                    Draft Date
+                  </label>
+                  <input
+                    type='date'
+                    id='draft-date'
+                    className='form-control'></input>
+                </div>
+                <div className='input-group'>
+                  <label
                     htmlFor='buy-in'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='buy in'>
                     Buy-In
                   </label>
@@ -52,7 +64,7 @@ const Modal = () => {
                 <div className='input-group'>
                   <label
                     htmlFor='draft-rank'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='draft rank'>
                     Draft Rank
                   </label>
@@ -66,7 +78,7 @@ const Modal = () => {
                 <div className='input-group'>
                   <label
                     htmlFor='rank'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='rank'>
                     Rank
                   </label>
@@ -80,7 +92,7 @@ const Modal = () => {
                 <div className='input-group'>
                   <label
                     htmlFor='playoff-teams'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='playoff teams'>
                     Playoff Teams
                   </label>
@@ -94,7 +106,7 @@ const Modal = () => {
                 <div className='input-group'>
                   <label
                     htmlFor='payout-1'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='payout 1'>
                     Payout 1
                   </label>
@@ -108,7 +120,7 @@ const Modal = () => {
                 <div className='input-group'>
                   <label
                     htmlFor='payout-2'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='payout 2'>
                     Payout 2
                   </label>
@@ -122,7 +134,7 @@ const Modal = () => {
                 <div className='input-group'>
                   <label
                     htmlFor='payout-3'
-                    className='input-group-text col-4'
+                    className='input-group-text ps-2 col-4'
                     aria-label='payout 3'>
                     Payout 3
                   </label>
@@ -133,15 +145,14 @@ const Modal = () => {
                     id='payout-3'
                     className='form-control'></input>
                 </div>
-                <div className='row justify-content-center'> //alksdjf;laskjdf;l//
-                                  <div className='col'>
-                  <button
-                    type='submit'
-                    className='btn btn-outline-secondary mt-3 col-4'>
-                    Save
-                  </button>
-                </div>
-
+                <div className='row justify-content-center align-items-center'>
+                  <div className='col-auto'>
+                    <button
+                      type='submit'
+                      className='btn btn-outline-secondary mt-3 col-auto'>
+                      Save
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

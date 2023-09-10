@@ -8,6 +8,7 @@ testData.cards = [...Array(25)].map((val, idx) => {
     buyIn: `$${(idx + 1) * 10}`,
     payout: `$${(idx + 1) * 10.0 * 2.4}`,
     platform: `Platform ${idx + 1}`,
+    draftDate: new Date().toLocaleDateString(),
   }
 })
 

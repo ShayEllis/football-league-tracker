@@ -4,7 +4,15 @@ import Modal from '../modal/modal'
 //custom team number - currently 10
 
 const Card = ({
-  cardData: { leagueName, teamName, ranking, buyIn, payout, platform },
+  cardData: {
+    leagueName,
+    teamName,
+    ranking,
+    buyIn,
+    payout,
+    platform,
+    draftDate,
+  },
 }) => {
   const tableCollapseId = `collapse${leagueName.split(' ').join('-')}`
 
@@ -31,6 +39,11 @@ const Card = ({
                 <th scope='row'>Platform:</th>
                 <td>{platform}</td>
               </tr>
+              <tr>
+                <th scope='row'>Draft Date:</th>
+                <td>{draftDate}</td>
+              </tr>
+
               <tr>
                 <th scope='row'>Buy-In:</th>
                 <td>{buyIn}</td>
