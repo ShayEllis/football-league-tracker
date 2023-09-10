@@ -1,4 +1,5 @@
 import footballStadium from '../../assets/football-stadium.jpg'
+import Modal from '../modal/modal'
 
 //custom team number - currently 10
 
@@ -10,12 +11,19 @@ const Card = ({
   return (
     <div className='card small'>
       <div className='card-header'>
-        <h6 className='card-title'>{leagueName}</h6>
+        <div className='row'>
+          <div className='col-9'>
+            <h6 className='card-title'>{leagueName}</h6>
+          </div>
+          <div className='col p-0 pe-1 d-flex justify-content-end'>
+            <Modal />
+          </div>
+        </div>
         <p className='card-subtitle'>{teamName}</p>
       </div>
       {/* <img src={footballStadium} /> */}
-      <div className='card-body pb-0'>
-        <p className='card-text text-center'>10 - Team</p>
+      <div className='card-body pb-0 pt-0'>
+        <p className='card-text text-center m-1'>10 - Team</p>
         <div className='table-responsive'>
           <table className='table table-striped table-sm table-hover table-borderless'>
             <tbody>

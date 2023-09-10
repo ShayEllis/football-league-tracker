@@ -7,6 +7,7 @@ import Alert from './features/alert/alert'
 import Card from './features/card/card'
 import Navbar from './components/navbar/navbar'
 import * as bootstrap from 'bootstrap'
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
   return (
