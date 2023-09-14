@@ -30,9 +30,9 @@ app.use(cookieParser())
 
 app.use('/league', leagueRouter)
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`)
-})
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}.`)
+// })
 
 /**
  * app.get()
@@ -40,3 +40,5 @@ app.listen(PORT, () => {
  * app.post() - create new resources
  * app.delete()
  */
+
+export default app
