@@ -1,0 +1,4 @@
+{
+  "presets": ["@bable/reset-env"],
+  "plugins": ["@babel/transform-runtime"]
+}

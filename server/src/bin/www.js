@@ -1,56 +1,56 @@
-import debug from 'debug'
-import http from 'http'
-import app from '../app.js'
+import debug from 'debug';
+import http from 'http';
+import app from '../app.js';
 
 // Normalize a port into a number, string, or false
 const normalizePort = (val) => {
-  const port = parseInt(val, 10)
+  const port = parseInt(val, 10);
   if (Number.isNaN(port)) {
     // named pipe
-    return val
+    return val;
   } else if (port >= 0) {
     // port number
-    return port
+    return port;
   }
-  return false
-}
+  return false;
+};
 
 // Get port number from environment variable
-const port = normalizePort(process.env.PORT || '3000')
-app.set('port', port)
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
 // Create HTTP server
-const server = http.createServer(app)
+const server = http.createServer(app);
 
 // Event listener for HTTP server 'error' event
 const onError = (error) => {
   if (error.syscall !== 'listen') {
-    throw error
+    throw error;
   }
-  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES': 
-      alert(`${bind} requires elevated privileges`)
-      process.exit(1)
-      break
+    case 'EACCES':
+      alert(`${bind} requires elevated privileges`);
+      process.exit(1);
+      break;
     case 'EADDRINUSE':
-      alert(`${bind} is already in use`)
-      process.exit(1)
-      break
-    default: 
-      throw error
+      alert(`${bind} is already in use`);
+      process.exit(1);
+      break;
+    default:
+      throw error;
   }
-}
+};
 
 // Event listener for HTTP server 'listening' event
 const onListening = () => {
-  const addr = server.address()
-  const bind = typeof addr === 'string' ? `Pipe ${addr}` : `Port ${addr.port}`
-  debug(`Listening on ${bind}`)
-}
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? `Pipe ${addr}` : `Port ${addr.port}`;
+  debug(`Listening on ${bind}`);
+};
 
 // Listen on provided port
-server.listen(port)
-server.on('error', onError)
-server.on('listening', onListening)
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
