@@ -1,12 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 // Import routes
 import leagueRouter from './routes/leagueRouter.js';
-// Setup environment variables
-dotenv.config();
 // Initialize the express app
 const app = express();
 // Initialize morgan for logging
