@@ -33,4 +33,9 @@ app.use('/league', leagueRouter);
  * app.delete()
  */
 
+// Handle error if one occurs
+app.use((err, req, res, next) => {
+  res.status(400).json({ error: err.stack })
+})
+
 export default app;
