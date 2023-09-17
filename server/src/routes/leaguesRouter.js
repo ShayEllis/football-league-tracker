@@ -1,9 +1,11 @@
 import express from 'express';
-import { leaguePage } from '../controllers/index.js'
+import { leaguePage, addLeague } from '../controllers/index.js';
 
 const leagueRouter = express.Router();
 
-leagueRouter.get('/', leaguePage)
+leagueRouter.get('/', leaguePage);
+
+leagueRouter.post('/', addLeague);
 
 // leagueRouter.get('/', (req, res, next) => {
 //   if (true) {
