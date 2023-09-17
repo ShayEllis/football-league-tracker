@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 // Import routes
-import leagueRouter from './routes/leagueRouter.js';
+import leagueRouter from './routes/leaguesRouter.js';
 // Initialize the express app
 const app = express();
 // Initialize morgan for logging

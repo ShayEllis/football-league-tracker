@@ -1,1 +1,1 @@
-export * from './leagueControllers.js'
+export * from './leaguesControllers.js'

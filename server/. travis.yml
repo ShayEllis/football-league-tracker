@@ -1,15 +1,28 @@
 language: node_js
 env:
   global:
-    - CC_TEST_REPORTER_ID=d55a085cb9afd196be6d78c9ec9dadd1ace5df42e5f762ea91582dfef42d14eb
+    - CONNECTION_STRING="postgresql://postgres:@localhost:5432/fantasy-football-tracker"
+    - CC_TEST_REPORTER_ID="d55a085cb9afd196be6d78c9ec9dadd1ace5df42e5f762ea91582dfef42d14eb"
 matrix:
   include:
     - node_js: '20'
 cache:
   directories: [node_modules]
+services:
+  - postgresql
+addons:
+  postgresql: '10'
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
+before_install:
+  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
+  - sudo /etc/init.d/postgresql restart
 install: npm
 after_success: npm coverage
 before_script:
+  - psql -c 'create database testdb;' -U postgres
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
