@@ -1,3 +1,4 @@
+
 import footballStadium from '../../assets/football-stadium.jpg'
 import Modal from '../modal/modal'
 
@@ -5,16 +6,23 @@ import Modal from '../modal/modal'
 
 const Card = ({
   cardData: {
+    id,
     leagueName,
     teamName,
-    ranking,
-    buyIn,
-    payout,
+    teamCount,
     platform,
     draftDate,
+    buyIn,
+    draftRank,
+    teamRank,
+    playoffTeams,
+    payout1,
+    payout2,
+    payout3,
   },
 }) => {
   const tableCollapseId = `collapse${leagueName.split(' ').join('-')}`
+  const convertedDraftDate = new Date(draftDate).toLocaleDateString()
 
   return (
     <div className='card small'>
@@ -24,14 +32,14 @@ const Card = ({
             <h6 className='card-title'>{leagueName}</h6>
           </div>
           <div className='col p-0 pe-1 d-flex justify-content-end'>
-            <Modal />
+            <Modal leagueName={leagueName} id={id} />
           </div>
         </div>
         <p className='card-subtitle'>{teamName}</p>
       </div>
       {/* <img src={footballStadium} /> */}
       <div className='card-body pb-0 pt-0'>
-        <p className='card-text text-center m-1'>10 - Team</p>
+        <p className='card-text text-center m-1'>{teamCount}</p>
         <div className='table-responsive'>
           <table className='table table-striped table-sm table-hover table-borderless'>
             <tbody>
@@ -41,7 +49,7 @@ const Card = ({
               </tr>
               <tr>
                 <th scope='row'>Draft Date:</th>
-                <td>{draftDate}</td>
+                <td>{convertedDraftDate}</td>
               </tr>
 
               <tr>
@@ -50,15 +58,15 @@ const Card = ({
               </tr>
               <tr>
                 <th scope='row'>Draft Rank:</th>
-                <td>{ranking}</td>
+                <td>{draftRank}</td>
               </tr>
               <tr>
-                <th scope='row'>Rank:</th>
-                <td>{ranking}</td>
+                <th scope='row'>Team Rank:</th>
+                <td>{teamRank}</td>
               </tr>
               <tr>
                 <th scope='row'>Playoff Teams:</th>
-                <td>{ranking}</td>
+                <td>{playoffTeams}</td>
               </tr>
               <tr
                 className=''
@@ -67,7 +75,7 @@ const Card = ({
                 aria-expanded='false'
                 aria-controls={tableCollapseId}>
                 <th scope='row'>Payout 1:</th>
-                <td className='dropdown-toggle'>{payout}</td>
+                <td className='dropdown-toggle'>{payout1}</td>
               </tr>
               <tr>
                 <th className='p-0' scope='row'>
@@ -77,7 +85,7 @@ const Card = ({
                 </th>
                 <td className='p-0'>
                   <div className='collapse lh-lg ps-1' id={tableCollapseId}>
-                    {payout}
+                    {payout2}
                   </div>
                 </td>
               </tr>
@@ -89,7 +97,7 @@ const Card = ({
                 </th>
                 <td className='p-0'>
                   <div className='collapse lh-lg ps-1' id={tableCollapseId}>
-                    {payout}
+                    {payout3}
                   </div>
                 </td>
               </tr>
