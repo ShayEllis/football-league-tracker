@@ -1,4 +1,3 @@
-import debug from 'debug';
 import http from 'http';
 import app from '../app.js';
 
@@ -31,11 +30,11 @@ const onError = (error) => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      alert(`${bind} requires elevated privileges`);
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      alert(`${bind} is already in use`);
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -47,7 +46,7 @@ const onError = (error) => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `Pipe ${addr}` : `Port ${addr.port}`;
-  debug(`Listening on ${bind}`);
+  console.log(`Listening on ${bind}`);
 };
 
 // Listen on provided port

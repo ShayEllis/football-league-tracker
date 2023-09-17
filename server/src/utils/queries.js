@@ -1,7 +1,7 @@
 export const createMessageTable = `
-DROP TABLE IF EXISTS league_info;
+DROP TABLE IF EXISTS league_info_test;
 
-CREATE TABLE IF NOT EXISTS league_info (
+CREATE TABLE IF NOT EXISTS league_info_test (
 	id SERIAL PRIMARY KEY,
 	league_name VARCHAR(25) NOT NULL,
 	team_name VARCHAR(25) NOT NULL,
@@ -19,11 +19,11 @@ CREATE TABLE IF NOT EXISTS league_info (
 `;
 
 export const insertMessages = `
-INSERT INTO league_info (league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3)
+INSERT INTO league_info_test (league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3)
 VALUES
   ( 'League 1', 'Team 1', '10-Team', 'ESPN', '09/28/2023', '15.00', '1', '1', '3', '50.00', '20.00', '5.00'),
   ( 'League 1', 'Team 1', '10-Team', 'ESPN', '09/28/2023', '15.00', '1', '1', '3', '50.00', '20.00', '5.00'),
   ( 'League 1', 'Team 1', '10-Team', 'ESPN', '09/28/2023', '15.00', '1', '1', '3', '50.00', '20.00', '5.00');
 `;
 
-export const dropMessagesTable = 'DROP TABLE league_info;';
+export const dropMessagesTable = 'DROP TABLE league_info_test;';
