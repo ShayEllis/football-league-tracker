@@ -11,7 +11,8 @@ const useForm = () => { // Add additionalData prop?
 
     // const formEndpoint = e.target.action
 
-    const data = [...e.target.elements].filter((input) => input.name).reduce((obj, input, idx) => {
+    const data = [...e.target.elements].filter((input) => input.name).reduce((obj, input) => {
+      if (!input.value) return {...obj}
       return {...obj, [input.name.replace(/-/ig, '_')]: input.value}
     }, {})
     
