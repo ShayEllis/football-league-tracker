@@ -21,8 +21,8 @@ class Model {
       INSERT INTO ${this.table} (${columns})
       VALUES (${values})
       RETURNING id, ${columns}
-    `
-    return this.pool.query(query)
+    `;
+    return this.pool.query(query);
   }
 }
 

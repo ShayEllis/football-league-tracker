@@ -9,19 +9,39 @@ export const leaguePage = async (req, res) => {
     );
     res.status(200).json({ leagues: data.rows });
   } catch (err) {
-    res.status(200).json({ leagues: err.stack });
+    res.status(400).json({ leagues: err.stack });
   }
 };
 
 export const addLeague = async (req, res) => {
-  console.log(req.body)
-  const { league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3 } = req.body;
-  const columns = 'league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3';
-  const values = `'${league_name}', '${team_name}', '${team_count}', '${platform}', '${draft_date}', '${buy_in}', '${draft_rank}', '${team_rank}', '${playoff_teams}', '${payout_1}', '${payout_2}', '${payout_3}'`;
+  console.log(req.body);
+  const {
+    league_name,
+    team_name,
+    team_count,
+    platform,
+    draft_date,
+    buy_in,
+    draft_rank,
+    team_rank,
+    playoff_teams,
+    payout_1,
+    payout_2,
+    payout_3,
+  } = req.body;
+
+  const columns = Object.keys(req.body).join(', ')
+  const values = Object.values(req.body).map((val) => `'${val}'`).join(', ')
+
+  // const columns =
+  //   'league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3';
+  // const values = `'${league_name}', '${team_name}', '${team_count}', '${platform}', '${draft_date}', '${buy_in}', '${draft_rank}', '${team_rank}', '${playoff_teams}', '${payout_1}', '${payout_2}', '${payout_3}'`;
+  // console.log(values);
+
   try {
-    const data = await leagueModel.insertWithReturn(columns, values);
-    res.status(200).json({ leagues: data.rows });
+  const data = await leagueModel.insertWithReturn(columns, values);
+  res.status(200).json({ leagues: data.rows });
   } catch (err) {
-    res.status(200).json({ leagues: err.stack });
+    res.status(400).json({ leagues: err.stack });
   }
 };
