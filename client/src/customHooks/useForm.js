@@ -21,15 +21,14 @@ const useForm = () => { // Add additionalData prop?
     // }
 
     try {
-      await server.addLeague(data)
-
-    } catch (err ){
-      setMessage(err.toString())
+      const jsonResponse = await server.addLeague(data)
+    } catch (err){
+      setMessage('failed to add league')
       setStatus('error')
     }
   }
 
-  return { handleFormSubmit }
+  return { handleFormSubmit, status, message }
 }
 
 export default useForm

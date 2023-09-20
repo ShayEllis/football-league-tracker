@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import { useState } from 'react'
 import './App.scss'
 import Modal from './features/modal/modal'
 import Table from './features/table/table'
@@ -10,6 +11,8 @@ import * as bootstrap from 'bootstrap'
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
+  const [leagues, setLeagues] = useState([])
+
   return (
     <>
       <Navbar />

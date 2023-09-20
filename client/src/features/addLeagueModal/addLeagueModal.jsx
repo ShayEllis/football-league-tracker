@@ -1,7 +1,20 @@
 import useForm from '../../customHooks/useForm'
+import { useReducer } from 'react'
+import { addLeagueModalReducer, initialState } from './addLeagueModalReducer'
 
 const AddLeagueModal = () => {
-  const { handleFormSubmit } = useForm()
+  const [state, dispatch] = useReducer(addLeagueModalReducer, initialState)
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+  }
+
+  const handleInputChange = (event) => {
+    dispatch({
+      type: 'input-change',
+      payload: { inputName: event.target.name, value: event.target.value },
+    })
+  }
 
   return (
     <>
@@ -37,6 +50,8 @@ const AddLeagueModal = () => {
                     id='league-name'
                     name='league-name'
                     className='form-control'
+                    value={state.leagueName}
+                    onChange={handleInputChange}
                     required></input>
                 </div>
                 <div className='input-group'>
@@ -51,6 +66,8 @@ const AddLeagueModal = () => {
                     id='team-name'
                     name='team-name'
                     className='form-control'
+                    value={state.teamName}
+                    onChange={handleInputChange}
                     required></input>
                 </div>
                 <div className='input-group'>
@@ -67,6 +84,8 @@ const AddLeagueModal = () => {
                     id='team-count'
                     name='team-count'
                     className='form-control'
+                    value={state.teamCount}
+                    onChange={handleInputChange}
                     required></input>
                 </div>
                 <div className='input-group'>
@@ -80,6 +99,8 @@ const AddLeagueModal = () => {
                     type='text'
                     id='platform'
                     name='platform'
+                    value={state.platform}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -93,6 +114,8 @@ const AddLeagueModal = () => {
                     type='date'
                     id='draft-date'
                     name='draft-date'
+                    value={state.draftDate}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -109,6 +132,8 @@ const AddLeagueModal = () => {
                     id='buy-in'
                     name='buy-in'
                     className='form-control'
+                    value={state.buyIn}
+                    onChange={handleInputChange}
                     required></input>
                 </div>
                 <div className='input-group'>
@@ -124,6 +149,8 @@ const AddLeagueModal = () => {
                     step='any'
                     id='draft-rank'
                     name='draft-rank'
+                    value={state.draftRank}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -139,6 +166,8 @@ const AddLeagueModal = () => {
                     step='1'
                     id='team-rank'
                     name='team-rank'
+                    value={state.teamRank}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -154,6 +183,8 @@ const AddLeagueModal = () => {
                     step='1'
                     id='playoff-teams'
                     name='playoff-teams'
+                    value={state.playoffTeams}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -169,6 +200,8 @@ const AddLeagueModal = () => {
                     step='any'
                     id='payout-1'
                     name='payout-1'
+                    value={state.payout1}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -184,6 +217,8 @@ const AddLeagueModal = () => {
                     stpe='any'
                     id='payout-2'
                     name='payout-2'
+                    value={state.payout2}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -199,13 +234,14 @@ const AddLeagueModal = () => {
                     step='any'
                     id='payout-3'
                     name='payout-3'
+                    value={state.payout3}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='row justify-content-center align-items-center'>
                   <div className='col-auto'>
                     <button
                       type='submit'
-                      data-bs-dismiss='modal'
                       className='btn btn-outline-secondary mt-3 col-auto'>
                       Save
                     </button>

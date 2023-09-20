@@ -14,13 +14,9 @@ const Dashboard = () => {
     })
   }, [])
 
-  useEffect(() => {
-    console.log(leagues)
-  }, [leagues])
-
   return (
     <div className='row justify-content-around'>
-      {leagues.map((cardData) => {
+      {leagues?.map((cardData) => {
         return (
           <div className='col-auto mb-3' key={cardData.id}>
             <Card cardData={cardData} />
