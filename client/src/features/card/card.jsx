@@ -1,6 +1,5 @@
-
 import footballStadium from '../../assets/football-stadium.jpg'
-import Modal from '../modal/modal'
+import Modal from '../editLeagueModal/editLeagueModal'
 
 //custom team number - currently 10
 

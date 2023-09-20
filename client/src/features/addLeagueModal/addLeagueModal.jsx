@@ -1,12 +1,23 @@
-import useForm from '../../customHooks/useForm'
 import { useReducer } from 'react'
 import { addLeagueModalReducer, initialState } from './addLeagueModalReducer'
+import server from '../../utils/server'
 
 const AddLeagueModal = () => {
   const [state, dispatch] = useReducer(addLeagueModalReducer, initialState)
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault()
+    // Remove empty input values
+    const filteredInputValues = Object.keys(state).reduce((obj, val) => {
+      if (state[val]) return { ...obj, [val]: state[val] }
+      return { ...obj }
+    }, {})
+    // Add legue to database
+    try {
+      const response = await server.addLeague(filteredInputValues)
+    } catch (err) {
+      console.log('An error occured')
+    }
   }
 
   const handleInputChange = (event) => {

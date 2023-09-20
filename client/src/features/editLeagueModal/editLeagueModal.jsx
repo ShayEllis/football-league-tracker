@@ -1,4 +1,3 @@
-import useForm from '../../customHooks/useForm'
 
 const Modal = ({ id, leagueName }) => {
   // const { handleFormSubmit } = useForm()
@@ -12,10 +11,10 @@ const Modal = ({ id, leagueName }) => {
         type='button'
         className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0'
         data-bs-toggle='modal'
-        data-bs-target={`#modal${id}`}>
+        data-bs-target={`#modal-edit-${id}`}>
         <i className='bi bi-pencil-square'></i>
       </button>
-      <div className='modal fade' id={`modal${id}`} tabIndex='-1'>
+      <div className='modal fade' id={`modal-edit-${id}`} tabIndex='-1'>
         <div className='modal-dialog modal-dialog-centered'>
           <div className='modal-content'>
             <div className='modal-header'>
