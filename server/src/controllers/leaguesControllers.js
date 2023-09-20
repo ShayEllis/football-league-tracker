@@ -15,7 +15,12 @@ export const getLeagues = async (req, res) => {
 
 export const addLeague = async (req, res) => {
   // Create columns string - 'league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3'
-  const columns = Object.keys(req.body).join(', ');
+  const columns = Object.keys(req.body).map((val) =>
+    val.replace(/[A-Z][A-Za-z]+|[\d]+/g, (match) => {
+      // Convert proerty names from camelCase to snake_case before sending to database
+      return `_${match.charAt(0).toLowerCase() + match.slice(1)}`;
+    })
+  );
   // Create values string - `'${league_name}', '${team_name}', '${team_count}', '${platform}', '${draft_date}', '${buy_in}', '${draft_rank}', '${team_rank}', '${playoff_teams}', '${payout_1}', '${payout_2}', '${payout_3}'`
   const values = Object.values(req.body)
     .map((val) => `'${val}'`)
