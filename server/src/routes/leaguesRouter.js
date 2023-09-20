@@ -1,10 +1,10 @@
 import express from 'express';
-import { leaguePage, addLeague } from '../controllers/index.js';
+import { getLeagues, addLeague } from '../controllers/index.js';
 import { modifyLeagueName, performAsyncActions } from '../middleware/index.js';
 
 const leagueRouter = express.Router();
 
-leagueRouter.get('/', leaguePage);
+leagueRouter.get('/', getLeagues);
 
 leagueRouter.post('/', addLeague);
 
