@@ -1,5 +1,6 @@
 import footballStadium from '../../assets/football-stadium.jpg'
-import Modal from '../editLeagueModal/editLeagueModal'
+import EditLeagueModal from '../editLeagueModal/editLeagueModal'
+import server from '../../utils/server'
 
 //custom team number - currently 10
 
@@ -23,6 +24,14 @@ const Card = ({
   const tableCollapseId = `collapse${leagueName.split(' ').join('-')}`
   const convertedDraftDate = new Date(draftDate).toLocaleDateString()
 
+  const handleLeagueRemove = async ({ target }) => {
+    try {
+      const response = server.deleteLeague(id)
+    } catch (err) {
+      console.log('Failed to delete league')
+    }
+  }
+
   return (
     <div className='card small'>
       <div className='card-header'>
@@ -31,14 +40,20 @@ const Card = ({
             <h6 className='card-title'>{leagueName}</h6>
           </div>
           <div className='col p-0 pe-1 d-flex justify-content-end'>
-            <Modal leagueName={leagueName} id={id} />
+            <EditLeagueModal leagueName={leagueName} id={id} />
+            <button
+              type='button'
+              className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0 ms-1'
+              onClick={handleLeagueRemove}>
+              <i className="bi bi-trash3"></i>
+            </button>
           </div>
         </div>
         <p className='card-subtitle'>{teamName}</p>
       </div>
       {/* <img src={footballStadium} /> */}
       <div className='card-body pb-0 pt-0'>
-        <p className='card-text text-center m-1'>{teamCount}</p>
+        <p className='card-text text-center m-1'>{teamCount} - Team</p>
         <div className='table-responsive'>
           <table className='table table-striped table-sm table-hover table-borderless'>
             <tbody>

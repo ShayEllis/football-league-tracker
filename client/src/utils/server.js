@@ -32,6 +32,19 @@ const server = {
       console.error(err)
     }
   },
+
+  async deleteLeague(id) {
+    try {
+      const response = await fetch(
+        `http://shays-macbook-pro.local:3000/league/${id}`,
+        { method: 'DELETE' }
+      )
+      const jsonResponse = await response.json()
+      console.log(jsonResponse)
+    } catch (err) {
+      console.log(err.message)
+    }
+  },
 }
 
 export default server

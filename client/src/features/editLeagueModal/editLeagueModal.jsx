@@ -1,5 +1,4 @@
-
-const Modal = ({ id, leagueName }) => {
+const EditLeagueModal = ({ id, leagueName }) => {
   // const { handleFormSubmit } = useForm()
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -176,4 +175,4 @@ const Modal = ({ id, leagueName }) => {
   )
 }
 
-export default Modal
+export default EditLeagueModal
