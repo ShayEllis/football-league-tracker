@@ -33,3 +33,7 @@ export const addLeague = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+export const deleteLeague = async (req, res) => {
+  console.log(req.params.id)
+}

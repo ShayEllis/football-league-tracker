@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // Initialize cors
 const corsOptions = {
   origin: '*', // Only the origins listed here will be allowed
-  methods: ['get', 'put', 'post', 'delete'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   maxAge: 1440, // One day in seconds
   optionsSuccessStatus: 200,
@@ -23,16 +23,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // Initialize cookie-parser to parse the cookie header, available under req.cookies
 app.use(cookieParser());
-
+// Specify a router for /league path requests
 app.use('/league', leagueRouter);
-
-/**
- * app.get()
- * app.put() - updating exsisting resources
- * app.post() - create new resources
- * app.delete()
- */
-
 // Handle error if one occurs
 app.use((err, req, res, next) => {
   res.status(400).json({ error: err.stack });
