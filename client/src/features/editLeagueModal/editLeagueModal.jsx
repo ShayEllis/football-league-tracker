@@ -1,8 +1,4 @@
-const EditLeagueModal = ({ id, leagueName }) => {
-  // const { handleFormSubmit } = useForm()
-  const handleFormSubmit = (event) => {
-    event.preventDefault()
-  }
+const EditLeagueModal = ({ id, leagueName, handleEditFormSubmit}) => {
 
   return (
     <>
@@ -25,7 +21,7 @@ const EditLeagueModal = ({ id, leagueName }) => {
                 aria-label='Close'></button>
             </div>
             <div className='modal-body'>
-              <form className='w-75 m-auto' onSubmit={handleFormSubmit}>
+              <form className='w-75 m-auto' onSubmit={handleEditFormSubmit}>
                 <div className='input-group'>
                   <label
                     htmlFor='platform'
@@ -161,7 +157,7 @@ const EditLeagueModal = ({ id, leagueName }) => {
                   <div className='col-auto'>
                     <button
                       type='submit'
-                      className='btn btn-outline-secondary mt-3 col-auto'>
+                      className='btn btn-outline-secondary mt-3'>
                       Save
                     </button>
                   </div>

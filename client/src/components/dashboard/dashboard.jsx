@@ -7,9 +7,23 @@ import server from '../../utils/server'
 const Dashboard = () => {
   const [leagues, setLeagues] = useState([])
 
+  const handleLeagueRemove = async (id) => {
+    try {
+      const response = await server.deleteLeague(id)
+      setLeagues((previousState) => {
+        return previousState.filter((league) => league.id !== id)
+      })
+    } catch (err) {
+      console.log('Failed to delete league')
+    }
+  }
+
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault()
+  }
+
   useEffect(() => {
     server.fetchLeagues().then((leagues) => {
-      console.log('Fetching leagues from server')
       setLeagues(leagues)
     })
   }, [])
@@ -19,7 +33,11 @@ const Dashboard = () => {
       {leagues?.map((cardData) => {
         return (
           <div className='col-auto mb-3' key={cardData.id}>
-            <Card cardData={cardData} />
+            <Card
+              cardData={cardData}
+              handleLeagueRemove={handleLeagueRemove}
+              handleEditFormSubmit={handleEditFormSubmit}
+            />
           </div>
         )
       })}

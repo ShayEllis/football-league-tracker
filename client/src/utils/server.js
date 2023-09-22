@@ -40,9 +40,10 @@ const server = {
         { method: 'DELETE' }
       )
       const jsonResponse = await response.json()
-      console.log(jsonResponse)
+      if (!response.ok) throw new Error(await jsonResponse.message)
+      return jsonResponse
     } catch (err) {
-      console.log(err.message)
+      console.error(err)
     }
   },
 }

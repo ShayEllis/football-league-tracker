@@ -1,8 +1,6 @@
 import footballStadium from '../../assets/football-stadium.jpg'
 import EditLeagueModal from '../editLeagueModal/editLeagueModal'
-import server from '../../utils/server'
-
-//custom team number - currently 10
+import DeleteLeagueModal from '../deleteLeagueModal/deleteLeagueModal'
 
 const Card = ({
   cardData: {
@@ -20,17 +18,11 @@ const Card = ({
     payout2,
     payout3,
   },
+  handleLeagueRemove,
+  handleEditFormSubmit,
 }) => {
   const tableCollapseId = `collapse${leagueName.split(' ').join('-')}`
   const convertedDraftDate = new Date(draftDate).toLocaleDateString()
-
-  const handleLeagueRemove = async ({ target }) => {
-    try {
-      const response = server.deleteLeague(id)
-    } catch (err) {
-      console.log('Failed to delete league')
-    }
-  }
 
   return (
     <div className='card small'>
@@ -40,13 +32,16 @@ const Card = ({
             <h6 className='card-title'>{leagueName}</h6>
           </div>
           <div className='col p-0 pe-1 d-flex justify-content-end'>
-            <EditLeagueModal leagueName={leagueName} id={id} />
-            <button
-              type='button'
-              className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0 ms-1'
-              onClick={handleLeagueRemove}>
-              <i className="bi bi-trash3"></i>
-            </button>
+            <EditLeagueModal
+              handleEditFormSubmit={handleEditFormSubmit}
+              leagueName={leagueName}
+              id={id}
+            />
+            <DeleteLeagueModal
+              handleLeagueRemove={handleLeagueRemove}
+              leagueName={leagueName}
+              id={id}
+            />
           </div>
         </div>
         <p className='card-subtitle'>{teamName}</p>
