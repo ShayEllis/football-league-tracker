@@ -24,6 +24,20 @@ class Model {
     `;
     return this.pool.query(query);
   }
+
+  async removeByIdWithReturn(id) {
+    const query = `
+      DELETE FROM ${this.table}
+      WHERE id = ${id} 
+      RETURNING *
+    `;
+    const data = await this.pool.query(query);
+    if (data.rows.length > 0) {
+      return data
+    } else {
+      return Promise.reject(new Error('ID no found'))
+    }
+  }
 }
 
 export default Model;

@@ -35,5 +35,11 @@ export const addLeague = async (req, res) => {
 };
 
 export const deleteLeague = async (req, res) => {
-  console.log(req.params.id)
-}
+  console.log(req.params.id);
+  try {
+    const data = await leagueModel.removeByIdWithReturn(req.params.id);
+    res.status(200).json({ league: data.rows });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
