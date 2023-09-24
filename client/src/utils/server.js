@@ -26,7 +26,6 @@ const server = {
       )
       const jsonResponse = await response.json()
       if (!response.ok) throw new Error(await jsonResponse.message)
-      console.log(jsonResponse)
       return jsonResponse
     } catch (err) {
       console.error(err)

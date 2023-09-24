@@ -7,6 +7,55 @@ import server from '../../utils/server'
 const Dashboard = () => {
   const [leagues, setLeagues] = useState([])
 
+  const validateLeagueName = (input) => {
+    // Check for duplicate league
+    const isDuplicate = leagues?.every(
+      (league) => league.leagueName !== input.value
+    )
+    // Change league name input class
+    if (!isDuplicate) {
+      input.classList.add('is-invalid')
+    } else {
+      input.classList.remove('is-invalid')
+    }
+  }
+
+  const handleLeagueAddSubmit = async (
+    event,
+    state,
+    exitModalRef,
+    resetAddLeagueFrom
+  ) => {
+    event.preventDefault()
+    // Remove empty input values
+    const filteredInputValues = Object.keys(state).reduce((obj, val) => {
+      if (state[val]) return { ...obj, [val]: state[val] }
+      return { ...obj }
+    }, {})
+    // Check for duplicate league before submitting to server
+    const isDuplicate = leagues?.every(
+      (league) => league.leagueName !== filteredInputValues.leagueName
+    )
+    // Add legue to database
+    if (isDuplicate) {
+      try {
+        const response = await server.addLeague(filteredInputValues)
+        if (response === undefined) throw new Error('Could not add league')
+        exitModalRef.current.click()
+        setLeagues((previousState) => {
+          return [...previousState, ...response.leagues]
+        })
+        resetAddLeagueFrom()
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
+
+  const handleLeagueEditSubmit = (event) => {
+    event.preventDefault()
+  }
+
   const handleLeagueRemove = async (id) => {
     try {
       const response = await server.deleteLeague(id)
@@ -16,10 +65,6 @@ const Dashboard = () => {
     } catch (err) {
       console.log('Failed to delete league')
     }
-  }
-
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault()
   }
 
   useEffect(() => {
@@ -36,7 +81,7 @@ const Dashboard = () => {
             <Card
               cardData={cardData}
               handleLeagueRemove={handleLeagueRemove}
-              handleEditFormSubmit={handleEditFormSubmit}
+              handleLeagueEditSubmit={handleLeagueEditSubmit}
             />
           </div>
         )
@@ -49,7 +94,10 @@ const Dashboard = () => {
                 <h6 className='card-title'>Add New League</h6>
               </div>
               <div className='col p-0 pe-1 d-flex justify-content-end'>
-                <AddLeagueModal />
+                <AddLeagueModal
+                  handleLeagueAddSubmit={handleLeagueAddSubmit}
+                  validateLeagueName={validateLeagueName}
+                />
               </div>
             </div>
           </div>

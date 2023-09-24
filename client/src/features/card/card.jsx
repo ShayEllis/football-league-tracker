@@ -19,7 +19,7 @@ const Card = ({
     payout3,
   },
   handleLeagueRemove,
-  handleEditFormSubmit,
+  handleLeagueEditSubmit,
 }) => {
   const tableCollapseId = `collapse${leagueName.split(' ').join('-')}`
   const convertedDraftDate = new Date(draftDate).toLocaleDateString()
@@ -33,7 +33,7 @@ const Card = ({
           </div>
           <div className='col p-0 pe-1 d-flex justify-content-end'>
             <EditLeagueModal
-              handleEditFormSubmit={handleEditFormSubmit}
+              handleLeagueEditSubmit={handleLeagueEditSubmit}
               leagueName={leagueName}
               id={id}
             />

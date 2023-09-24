@@ -1,26 +1,18 @@
-import { useReducer } from 'react'
+import { useReducer, useRef, useEffect } from 'react'
 import { addLeagueModalReducer, initialState } from './addLeagueModalReducer'
-import server from '../../utils/server'
 
-const AddLeagueModal = () => {
+const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {
   const [state, dispatch] = useReducer(addLeagueModalReducer, initialState)
+  const exitModalRef = useRef()
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault()
-    // Remove empty input values
-    const filteredInputValues = Object.keys(state).reduce((obj, val) => {
-      if (state[val]) return { ...obj, [val]: state[val] }
-      return { ...obj }
-    }, {})
-    // Add legue to database
-    try {
-      const response = await server.addLeague(filteredInputValues)
-    } catch (err) {
-      console.log('An error occured')
-    }
+  const resetAddLeagueFrom = () => {
+    dispatch({ type: 'reset-form' })
   }
 
   const handleInputChange = (event) => {
+    if (event.target.name === 'league-name') {
+      validateLeagueName(event.target)
+    }
     dispatch({
       type: 'input-change',
       payload: { inputName: event.target.name, value: event.target.value },
@@ -33,7 +25,8 @@ const AddLeagueModal = () => {
         type='button'
         className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0'
         data-bs-toggle='modal'
-        data-bs-target='#modal-add'>
+        data-bs-target='#modal-add'
+        ref={exitModalRef}>
         <i className='bi bi-plus-square'></i>
       </button>
       <div className='modal fade' id='modal-add' tabIndex='-1'>
@@ -48,8 +41,17 @@ const AddLeagueModal = () => {
                 aria-label='Close'></button>
             </div>
             <div className='modal-body'>
-              <form className='w-75 m-auto' onSubmit={handleFormSubmit}>
-                <div className='input-group'>
+              <form
+                className='w-75 m-auto'
+                onSubmit={(event) =>
+                  handleLeagueAddSubmit(
+                    event,
+                    state,
+                    exitModalRef,
+                    resetAddLeagueFrom
+                  )
+                }>
+                <div className='input-group has-validation'>
                   <label
                     htmlFor='league-name'
                     className='input-group-text ps-2 col-4'
@@ -64,6 +66,7 @@ const AddLeagueModal = () => {
                     value={state.leagueName}
                     onChange={handleInputChange}
                     required></input>
+                  <div className='invalid-feedback'>Duplicate league name</div>
                 </div>
                 <div className='input-group'>
                   <label
