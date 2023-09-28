@@ -1,7 +1,4 @@
-import server from '../../utils/server'
-
-const DeleteLeagueModal = ({id, leagueName, handleLeagueRemove}) => {
-
+const DeleteLeagueModal = ({ id, leagueName, handleLeagueRemove }) => {
   return (
     <>
       <button
@@ -30,7 +27,11 @@ const DeleteLeagueModal = ({id, leagueName, handleLeagueRemove}) => {
             <div className='modal-body'>
               <div className='row justify-content-center align-items-center'>
                 <div className='col-auto'>
-                  <button type='submit' className='btn btn-outline-danger' data-bs-dismiss='modal' onClick={() => handleLeagueRemove(id)}>
+                  <button
+                    type='submit'
+                    className='btn btn-outline-danger'
+                    data-bs-dismiss='modal'
+                    onClick={() => handleLeagueRemove(id)}>
                     DELETE
                   </button>
                 </div>

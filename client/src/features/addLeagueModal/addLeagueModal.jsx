@@ -1,4 +1,4 @@
-import { useReducer, useRef, useEffect } from 'react'
+import { useReducer, useRef } from 'react'
 import { addLeagueModalReducer, initialState } from './addLeagueModalReducer'
 
 const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {

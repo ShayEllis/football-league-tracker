@@ -18,11 +18,12 @@ const Card = ({
     payout2,
     payout3,
   },
+  cardData,
   handleLeagueRemove,
   handleLeagueEditSubmit,
 }) => {
   const tableCollapseId = `collapse${leagueName.split(' ').join('-')}`
-  const convertedDraftDate = new Date(draftDate).toLocaleDateString()
+  const convertedDraftDate = draftDate && new Date(draftDate).toLocaleDateString()
 
   return (
     <div className='card small'>
@@ -34,8 +35,8 @@ const Card = ({
           <div className='col p-0 pe-1 d-flex justify-content-end'>
             <EditLeagueModal
               handleLeagueEditSubmit={handleLeagueEditSubmit}
-              leagueName={leagueName}
-              id={id}
+              cardData={cardData}
+
             />
             <DeleteLeagueModal
               handleLeagueRemove={handleLeagueRemove}

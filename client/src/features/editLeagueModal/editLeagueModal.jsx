@@ -1,18 +1,37 @@
-const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
+import { useReducer } from 'react'
+import {
+  editLeagueModalReducer,
+  stateInitializer,
+} from './editLeagueModalReducer'
+
+const EditLeagueModal = ({ cardData, handleLeagueEditSubmit }) => {
+  const [state, dispatch] = useReducer(
+    editLeagueModalReducer,
+    cardData,
+    stateInitializer
+  )
+
+  const handleInputChange = (event) => {
+    dispatch({
+      type: 'input-change',
+      payload: { inputName: event.target.name, value: event.target.value },
+    })
+  }
+
   return (
     <>
       <button
         type='button'
         className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0'
         data-bs-toggle='modal'
-        data-bs-target={`#modal-edit-${id}`}>
+        data-bs-target={`#modal-edit-${state.id}`}>
         <i className='bi bi-pencil-square'></i>
       </button>
-      <div className='modal fade' id={`modal-edit-${id}`} tabIndex='-1'>
+      <div className='modal fade' id={`modal-edit-${state.id}`} tabIndex='-1'>
         <div className='modal-dialog modal-dialog-centered'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>{`Edit ${leagueName}`}</h5>
+              <h5 className='modal-title'>{`Edit ${state.leagueName}`}</h5>
               <button
                 type='button'
                 className='btn-close'
@@ -20,7 +39,41 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                 aria-label='Close'></button>
             </div>
             <div className='modal-body'>
-              <form className='w-75 m-auto' onSubmit={handleLeagueEditSubmit}>
+              <form className='w-75 m-auto' onSubmit={(event) => handleLeagueEditSubmit(event, state)}>
+                <div className='input-group'>
+                  <label
+                    htmlFor='team-name'
+                    className='input-group-text ps-2 col-4'
+                    aria-label='team name'>
+                    Team Name
+                  </label>
+                  <input
+                    type='text'
+                    id='team-name'
+                    name='team-name'
+                    className='form-control'
+                    value={state.teamName}
+                    onChange={handleInputChange}
+                    required></input>
+                </div>
+                <div className='input-group'>
+                  <label
+                    htmlFor='team-count'
+                    className='input-group-text ps-2 col-4'
+                    aria-label='team count'>
+                    Team Count
+                  </label>
+                  <input
+                    type='number'
+                    min='0'
+                    step='any'
+                    id='team-count'
+                    name='team-count'
+                    className='form-control'
+                    value={state.teamCount}
+                    onChange={handleInputChange}
+                    required></input>
+                </div>
                 <div className='input-group'>
                   <label
                     htmlFor='platform'
@@ -32,6 +85,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     type='text'
                     id='platform'
                     name='platform'
+                    value={state.platform}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -45,6 +100,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     type='date'
                     id='draft-date'
                     name='draft-date'
+                    value={state.draftDate}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -60,6 +117,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     step='any'
                     id='buy-in'
                     name='buy-in'
+                    value={state.buyIn}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -75,6 +134,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     step='any'
                     id='draft-rank'
                     name='draft-rank'
+                    value={state.draftRank}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -90,6 +151,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     step='1'
                     id='team-rank'
                     name='team-rank'
+                    value={state.teamRank}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -105,6 +168,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     step='1'
                     id='playoff-teams'
                     name='playoff-teams'
+                    value={state.playoffTeams}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -120,6 +185,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     step='any'
                     id='payout-1'
                     name='payout-1'
+                    value={state.payout1}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -135,6 +202,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     stpe='any'
                     id='payout-2'
                     name='payout-2'
+                    value={state.payout2}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='input-group'>
@@ -150,6 +219,8 @@ const EditLeagueModal = ({ id, leagueName, handleLeagueEditSubmit }) => {
                     step='any'
                     id='payout-3'
                     name='payout-3'
+                    value={state.payout3}
+                    onChange={handleInputChange}
                     className='form-control'></input>
                 </div>
                 <div className='row justify-content-center align-items-center'>
