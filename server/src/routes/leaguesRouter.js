@@ -1,5 +1,10 @@
 import express from 'express';
-import { getLeagues, addLeague, deleteLeague } from '../controllers/index.js';
+import {
+  getLeagues,
+  addLeague,
+  updateLeague,
+  deleteLeague,
+} from '../controllers/index.js';
 import { modifyLeagueName, performAsyncActions } from '../middleware/index.js';
 
 const leagueRouter = express.Router();
@@ -8,6 +13,8 @@ const leagueRouter = express.Router();
 leagueRouter.get('/', getLeagues);
 // Add new leagues
 leagueRouter.post('/', addLeague);
+// Update a league in the database
+leagueRouter.put('/', updateLeague);
 // Delete a league from the database
 leagueRouter.delete('/:id', deleteLeague);
 

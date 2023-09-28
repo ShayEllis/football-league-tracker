@@ -34,8 +34,31 @@ export const addLeague = async (req, res) => {
   }
 };
 
+export const updateLeague = async (req, res) => {
+  // Create columns string - 'league_name, team_name, team_count, platform, draft_date, buy_in, draft_rank, team_rank, playoff_teams, payout_1, payout_2, payout_3'
+  const columns = Object.keys(req.body).map((val) =>
+    val.replace(/[A-Z][A-Za-z]+|[\d]+/g, (match) => {
+      // Convert proerty names from camelCase to snake_case before sending to database
+      return `_${match.charAt(0).toLowerCase() + match.slice(1)}`;
+    })
+  );
+  // Create values string - `'${league_name}', '${team_name}', '${team_count}', '${platform}', '${draft_date}', '${buy_in}', '${draft_rank}', '${team_rank}', '${playoff_teams}', '${payout_1}', '${payout_2}', '${payout_3}'`
+  const values = Object.values(req.body)
+    .map((val) => `'${val}'`)
+    .join(', ');
+
+  console.log(columns)
+  console.log(values)
+
+  try {
+    // const data = await leagueModel.insertWithReturn(columns, values);
+    // res.status(200).json({ leagues: data.rows });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 export const deleteLeague = async (req, res) => {
-  console.log(req.params.id);
   try {
     const data = await leagueModel.removeByIdWithReturn(req.params.id);
     res.status(200).json({ league: data.rows });
