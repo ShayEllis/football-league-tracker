@@ -1,10 +1,11 @@
-import { useReducer } from 'react'
+import { useReducer, useRef } from 'react'
 import {
   editLeagueModalReducer,
   stateInitializer,
 } from './editLeagueModalReducer'
 
 const EditLeagueModal = ({ cardData, handleLeagueEditSubmit }) => {
+  const exitModalRef = useRef()
   const [state, dispatch] = useReducer(
     editLeagueModalReducer,
     cardData,
@@ -36,10 +37,11 @@ const EditLeagueModal = ({ cardData, handleLeagueEditSubmit }) => {
                 type='button'
                 className='btn-close'
                 data-bs-dismiss='modal'
+                ref={exitModalRef}
                 aria-label='Close'></button>
             </div>
             <div className='modal-body'>
-              <form className='w-75 m-auto' onSubmit={(event) => handleLeagueEditSubmit(event, state)}>
+              <form className='w-75 m-auto' onSubmit={(event) => handleLeagueEditSubmit(event, state, exitModalRef)}>
                 <div className='input-group'>
                   <label
                     htmlFor='team-name'
@@ -131,7 +133,7 @@ const EditLeagueModal = ({ cardData, handleLeagueEditSubmit }) => {
                   <input
                     type='number'
                     min='0'
-                    step='any'
+                    step='1'
                     id='draft-rank'
                     name='draft-rank'
                     value={state.draftRank}
@@ -199,7 +201,7 @@ const EditLeagueModal = ({ cardData, handleLeagueEditSubmit }) => {
                   <input
                     type='number'
                     min='0'
-                    stpe='any'
+                    step='any'
                     id='payout-2'
                     name='payout-2'
                     value={state.payout2}

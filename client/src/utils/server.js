@@ -4,18 +4,7 @@ const server = {
       const response = await fetch('http://shays-macbook-pro.local:3000/league')
       if (!response.ok) throw new Error('failed to fetch')
       const jsonResponse = await response.json()
-      const filteredResponse = jsonResponse.leagues.map((league) => {
-        return Object.keys(league).reduce((obj, key) => {
-          let val = ''
-          if (key === 'draftDate' && league[key]) {
-            val = new Date(league[key]).toLocaleDateString()
-          } else {
-            val = league[key] || ''
-          }
-          return { ...obj, [key]: val }
-        }, {})
-      })
-      return filteredResponse
+      return jsonResponse.leagues
     } catch (err) {
       console.error(err.message)
     }

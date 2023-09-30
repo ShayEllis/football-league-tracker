@@ -52,23 +52,26 @@ const Dashboard = () => {
     }
   }
 
-  const handleLeagueEditSubmit = async (event, formData) => {
+  const handleLeagueEditSubmit = async (event, formData, exitModalRef) => {
     event.preventDefault()
     // Remove empty input values
     const filteredInputValues = Object.keys(formData).reduce((obj, val) => {
       if (formData[val]) return { ...obj, [val]: formData[val] }
       return { ...obj }
     }, {})
-    console.log(filteredInputValues)
     // Update league in database
     try {
       const response = await server.updateLeague(filteredInputValues)
       if (response === undefined) throw new Error('Could not add league')
       exitModalRef.current.click()
       setLeagues((previousState) => {
-        return [...previousState, ...response.leagues]
+        return previousState.map((league) => {
+          if (league.id === filteredInputValues.id) {
+            return response.leagues[0]
+          }
+          return league
+        })
       })
-      resetAddLeagueFrom()
     } catch (err) {
       console.error(err)
     }

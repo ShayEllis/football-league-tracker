@@ -10,7 +10,7 @@ const stateInitializer = (initialState) => {
         const formDraftDate = `${year}-${month}-${day}`
         return { ...obj, [key]: formDraftDate }
       } else if (inputsToCorrect.includes(key)) {
-        const inputValue = initialState[key].replace(/\D/g, '')
+        const inputValue = initialState[key].replace(/[$,]/g, '')
         return { ...obj, [key]: inputValue }
       }
     }
@@ -35,9 +35,6 @@ const editLeagueModalReducer = (state, action) => {
         ...state,
         [camelCaseInputName]: action.payload.value,
       }
-    }
-    case 'reset-form': {
-      return initialState
     }
     default: {
       console.warn(`"${action.type}" does not match a reducer action`)

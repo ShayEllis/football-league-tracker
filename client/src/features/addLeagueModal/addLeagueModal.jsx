@@ -25,8 +25,7 @@ const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {
         type='button'
         className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0'
         data-bs-toggle='modal'
-        data-bs-target='#modal-add'
-        ref={exitModalRef}>
+        data-bs-target='#modal-add'>
         <i className='bi bi-plus-square'></i>
       </button>
       <div className='modal fade' id='modal-add' tabIndex='-1'>
@@ -38,7 +37,8 @@ const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {
                 type='button'
                 className='btn-close'
                 data-bs-dismiss='modal'
-                aria-label='Close'></button>
+                aria-label='Close'
+                ref={exitModalRef}></button>
             </div>
             <div className='modal-body'>
               <form
@@ -160,7 +160,7 @@ const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {
                   <input
                     type='number'
                     min='0'
-                    step='any'
+                    step='1'
                     id='draft-rank'
                     name='draft-rank'
                     value={state.draftRank}
@@ -228,7 +228,7 @@ const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {
                   <input
                     type='number'
                     min='0'
-                    stpe='any'
+                    step='any'
                     id='payout-2'
                     name='payout-2'
                     value={state.payout2}
