@@ -45,16 +45,15 @@ export const updateLeague = async (req, res) => {
     })
   );
   // Create values array - ['${league_name}', '${team_name}', '${team_count}', '${platform}', '${draft_date}', '${buy_in}', '${draft_rank}', '${team_rank}', '${playoff_teams}', '${payout_1}', '${payout_2}', '${payout_3}']
-  const values = Object.values(req.body).map((val) => `'${val}'`);
-
+  const values = Object.values(req.body).map((val) => val === 'NULL' ? 'NULL' : `'${val}'`);
   // Create newValues string from query - 'id = '275', league_name = '11', team_name = '2', team_count = '2', platform = '2', buy_in = '200''
-  const newValues = columns.reduce((pre, cur, idx) => {
-    if (cur !== 'id') {
-      let stringVal = pre.concat(`${cur} = ${values[idx]}`);
+  const newValues = columns.reduce((acc, val, idx) => {
+    if (val !== 'id') {
+      let stringVal = acc.concat(`${val} = ${values[idx]}`);
       if (idx < values.length - 1) stringVal += ', ';
       return stringVal;
     }
-    return pre;
+    return acc;
   }, '');
 
   try {

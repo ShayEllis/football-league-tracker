@@ -11,6 +11,7 @@ class Model {
   }
 
   static filterQueryResponse(responseValue) {
+    console.log(responseValue)
     return responseValue.map((row) => {
       return Object.keys(row).reduce((obj, key) => {
         const val = row[key] || '';
@@ -20,8 +21,8 @@ class Model {
   }
 
   async select(columns, clause) {
-    let query = `
-      SELECT ${columns} 
+    const query = `
+      SELECT ${columns}
       FROM ${this.table}
       `;
     if (clause) query += clause;

@@ -12,17 +12,10 @@ const leagueRouter = express.Router();
 // Return leagues from database
 leagueRouter.get('/', getLeagues);
 // Add new leagues
-leagueRouter.post('/', addLeague);
+leagueRouter.post('/', addLeague); // create new resources
 // Update a league in the database
-leagueRouter.put('/', updateLeague);
+leagueRouter.put('/', updateLeague); // updating exsisting resources
 // Delete a league from the database
 leagueRouter.delete('/:id', deleteLeague);
-
-/**
- * app.get()
- * app.put() - updating exsisting resources
- * app.post() - create new resources
- * app.delete()
- */
 
 export default leagueRouter;
