@@ -23,10 +23,11 @@ const AddLeagueModal = ({ handleLeagueAddSubmit, validateLeagueName }) => {
     <>
       <button
         type='button'
-        className='btn btn-sm btn-outline-secondary p-1 pt-0 pb-0'
+        className='btn btn-outline-secondary p-1'
         data-bs-toggle='modal'
         data-bs-target='#modal-add'>
-        <i className='bi bi-plus-square'></i>
+        <i className='bi bi-plus-square p-1'></i>
+        Add New League
       </button>
       <div className='modal fade' id='modal-add' tabIndex='-1'>
         <div className='modal-dialog modal-dialog-centered'>

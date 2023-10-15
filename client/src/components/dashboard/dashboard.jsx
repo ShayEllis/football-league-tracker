@@ -57,7 +57,7 @@ const Dashboard = () => {
     // Remove empty input values
     const filteredInputValues = Object.keys(formData).reduce((obj, val) => {
       if (formData[val]) return { ...obj, [val]: formData[val] }
-      return { ...obj }
+      return { ...obj, [val]: 'NULL' }
     }, {})
     // Update league in database
     try {
@@ -112,9 +112,8 @@ const Dashboard = () => {
           <div className='card-header'>
             <div className='row'>
               <div className='col-9'>
-                <h6 className='card-title'>Add New League</h6>
               </div>
-              <div className='col p-0 pe-1 d-flex justify-content-end'>
+              <div className='d-grid ps-1 pe-1'>
                 <AddLeagueModal
                   handleLeagueAddSubmit={handleLeagueAddSubmit}
                   validateLeagueName={validateLeagueName}
