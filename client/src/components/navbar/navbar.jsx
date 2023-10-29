@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className='collapse navbar-collapse justify-content-end' id='nav'>
           <ul className='navbar-nav'>
             <li className='nav-item'>
-              <NavLink to='dashboard' className='nav-link active' aria-current='page'>
+              <NavLink to='dashboard' className='nav-link' aria-current='page'>
                 Dashboard
               </NavLink>
             </li>

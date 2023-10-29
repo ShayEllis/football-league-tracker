@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Card from '../../features/card/card'
 import AddLeagueModal from '../../features/addLeagueModal/addLeagueModal'
-import testData from '../../test/testData'
+// import testData from '../../test/testData'
 import server from '../../utils/server'
 
 const Dashboard = () => {
