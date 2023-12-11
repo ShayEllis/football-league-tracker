@@ -1,1 +1,8 @@
-@import 'bootstrap/scss/bootstrap', './features/editLeagueModal/editLeagueModal.scss', './features/table/table.scss', './components/button/button.scss', './features/alert/alert.scss', './features/card/card.scss', './components/navbar/navbar.scss', './components/dashboard/dashboard.scss', './features/addLeagueModal/addLeagueModal.scss', './features/deleteLeagueModal/deleteLeagueModal.scss'
+@import 'bootstrap/scss/bootstrap',
+  './features/editLeagueModal/editLeagueModal.scss',
+  './features/table/table.scss', './components/button/button.scss',
+  './features/alert/alert.scss', './features/card/card.scss',
+  './components/navbar/navbar.scss', './components/dashboard/dashboard.scss',
+  './features/addLeagueModal/addLeagueModal.scss',
+  './features/deleteLeagueModal/deleteLeagueModal.scss',
+  './components/teamBuilder/teamBuilder.scss';

@@ -2,8 +2,8 @@ const server = {
   async fetchLeagues() {
     try {
       const response = await fetch('http://shays-macbook-pro.local:3000/league')
-      if (!response.ok) throw new Error('failed to fetch')
       const jsonResponse = await response.json()
+      if (!response.ok) throw new Error(jsonResponse.message)
       return jsonResponse.leagues
     } catch (err) {
       console.error(err.message)

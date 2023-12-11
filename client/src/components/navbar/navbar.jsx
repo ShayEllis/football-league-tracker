@@ -24,13 +24,13 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className='nav-item'>
-              <NavLink href='#' className='nav-link'>
+              <NavLink to='#' className='nav-link'>
                 Summary
               </NavLink>
             </li>
             <li className='nav-item'>
-              <NavLink href='#' className='nav-link'>
-                Detail
+              <NavLink to='teamBuilder' className='nav-link'>
+                Team Details
               </NavLink>
             </li>
           </ul>
