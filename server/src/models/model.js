@@ -11,7 +11,7 @@ class Model {
   }
 
   static filterQueryResponse(responseValue) {
-    console.log(responseValue)
+    console.log(responseValue);
     return responseValue.map((row) => {
       return Object.keys(row).reduce((obj, key) => {
         const val = row[key] || '';
@@ -21,7 +21,7 @@ class Model {
   }
 
   async select(columns, clause) {
-    const query = `
+    let query = `
       SELECT ${columns}
       FROM ${this.table}
       `;
@@ -57,11 +57,8 @@ class Model {
       RETURNING id, league_name AS "leagueName", team_name AS "teamName", team_count as "teamCount", platform, draft_date as "draftDate", buy_in as "buyIn", draft_rank as "draftRank", team_rank AS "teamRank", playoff_teams AS "playoffTeams", payout_1 AS payout1, payout_2 AS payout2, payout_3 AS payout3
     `;
     const data = await this.pool.query(query);
-    if (data.rows.length > 0) {
-      return data;
-    } else {
-      return Promise.reject(new Error('ID no found'));
-    }
+    if (data.rows.length > 0) return data;
+    return Promise.reject(new Error('ID no found'));
   }
 }
 
